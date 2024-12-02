@@ -1,0 +1,200 @@
+<?php error_reporting(0); ?> 
+<?php
+
+//here is the code for registration data to the database
+	
+	include 'db_connection.php';
+	
+
+/*	if(isset($_POST['submit'])){ 
+        $customerName=$_POST['customerFirstName'];
+        $customerName=$_POST['customerLastName'];
+        $telephone=$_POST['telephone'];
+        $vehicleNo=$_POST['vehicleNo'];
+        $vehicleCatogory=$_POST['vehicleCatogory'];
+        $fuelType=$_POST['fuelType'];
+        $location=$_POST['location'];
+        $password=$_POST['password'];*/
+	}
+
+	if(isset($_POST["submit"])){ 
+        $customerFirstName=$_POST["customerFirstName"];
+        $customerLastName=$_POST["customerLastName"];
+        $telephone=$_POST["telephone"];
+        $vehicleNo=$_POST["vehicleNo"];
+        $vehicleCategory=$_POST["vehicleCategory"];
+        $fuelType=$_POST["fuelType"];
+        $location=$_POST["location"];
+        $password=$_POST["password"];
+	}
+
+$query= "INSERT INTO user
+        VALUES ( '',$customerName,$telephone,$vehicleNo,$vehicleCatogory, $fuelType, $location, $password)";*/
+		  
+			  //duplicate value checking
+
+			  $duplicate=mysqli_query($conn,"select * from user where vehicleNo='$vehicleNo' or password='$password'");
+
+
+	if (mysqli_num_rows($duplicate)>0)
+	{
+	//header("Location: Register.php?message=User name or Email id already exists.");
+
+		echo '<script type="text/javascript">';
+					echo ' alert("This Vehicle no or Password already existed")';  //not showing an alert box.
+					echo '</script>';
+
+					//header('Location: register_1.php');
+	}
+
+	else{
+		$query= "INSERT INTO user
+        VALUES ( '','$customerFirstName','$customerLastName','$telephone','$vehicleNo','$vehicleCategory', '$fuelType', '$location', '$password')";
+
+mysqli_query($conn, $query);
+
+echo '<script type="text/javascript">';
+					echo ' alert("Successfully Registered Now you can login and book you parking place")';  //not showing an alert box.
+					echo '</script>';
+
+					//header('Location: login.php');
+	}
+
+
+ 
+		
+}	
+
+else{
+	echo '<script type="text/javascript">';
+					echo ' alert("Not Registered")';  //not showing an alert box.
+					echo '</script>';
+
+				//	header('Location: register_1.php');
+}
+
+
+//login
+
+/* include('db_connection.php');  
+    $vehicleNo = $_POST['vehicleNo'];  
+    $password = $_POST['password'];  
+      
+        //to prevent from mysqli injection  
+        $vehicleNo = stripcslashes($vehicleNo);  
+        $password = stripcslashes($password);  
+        $vehicleNo = mysqli_real_escape_string($conn, $vehicleNo);  
+        $password = mysqli_real_escape_string($conn, $password);  
+      
+        $sql = "select *from login where vehicleNo = '$vehicleNo' and password = '$password'";  
+        $result = mysqli_query($conn, $sql);  
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($result);  
+          
+        if($count == 1){  
+            echo "<h1><center> Login successful </center></h1>";  
+        }  
+        else{  
+            echo "<h1> Login failed. Invalid username or password.</h1>";  
+        } 
+*/
+	
+?>
+
+
+
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<div align="center">
+
+<table cellpadding="0" cellspacing="0" width="1119" height="1470" bgcolor="#CCFFFF">
+	<!-- MSTableType="layout" -->
+	<tr>
+		<td valign="top" align="center" rowspan="3">
+		<p align="left">
+		<img border="0" src="../Parkk%20logo.jpg" width="105" height="88"></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td height="51">&nbsp;</td>
+		</tr>
+	<tr>
+		<td valign="top" height="29" align="center" bgcolor="#000000" colspan="3">
+		<p align="right"><b>
+		<font size="5" color="#FFFFFF" face="Bahnschrift SemiBold">
+		<a href="index.php"><font color="#FFFFFF">HOME</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="updates.php"><font color="#FFFFFF">UPDATES</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="contacts.php"><font color="#FFFFFF">CONTACT</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="about.php"><font color="#FFFFFF">ABOUT</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+		</b></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td height="11"></td>
+		</tr>
+	<tr>
+		<td valign="top" colspan="4" height="667" align="center">
+		<img border="0" src="Presentation1.png" width="1118" height="667"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td height="87">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td valign="top" bgcolor="#CCFFFF">
+		<form method="POST" name="login" action="--WEBBOT-SELF--">
+			<!--webbot bot="SaveResults" U-File="C:\Users\user\Pictures\new parking system\New parking wusl\_private\form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+			<p align="center"><b>
+			<font size="7" face="Arial Black" color="#0000FF">LOGIN</font></b></p>
+			<p align="center">&nbsp;</p>
+			<p align="left"><font size="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" name="vehicleNo" size="40" required></font></p>
+			<p align="left"><font size="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="password" name="password" size="40" required> </font></p>
+		</form>
+		<p>&nbsp;</td>
+		<td height="236">&nbsp;</td>
+		</tr>
+	<tr>
+		<td width="115">&nbsp;</td>
+		<td width="84">&nbsp;</td>
+		<td width="729">&nbsp;</td>
+		<td height="225" width="191">&nbsp;</td>
+		</tr>
+	<tr>
+		<td valign="top" colspan="4" height="164" bgcolor="#000000">
+		<div class="copyright_section">
+			<div class="container">
+				<p align="center">&nbsp;</p>
+				<p align="center"><font color="#FFFFFF" face="Candara" size="4">
+				Smart Parking Ltd is registered in Sri Lanka, register no. 
+				SC356265.<br>
+				The ultimate parent company in the Sri Lanka is Smart Parking 
+				(SL) Limited, also registered in the Sri Lanka register number 
+				SCC456.<br>
+				Our registration address is Smart Parking Limited, Flower road, 
+				Colombo 6.<br>
+				Company V.A.T. Reg. No 55560672</font></div>
+		</div>
+		<p>&nbsp;</td>
+	</tr>
+</table>
+
+</div>
+<p align="center">&nbsp;</p>
+
+</body>
+
+</html>

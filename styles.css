@@ -1,0 +1,67 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #FF0000;
+    --text-color: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 1rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+}
+
+.services-and-system {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    header, .services-and-system {
+        flex-direction: column;
+        align-items: center;
+    }
+}
